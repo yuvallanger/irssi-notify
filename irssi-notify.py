@@ -2,6 +2,7 @@
 
 import os
 import time
+import subprocess
 
 # the log file of the channel you want notifications for:
 logfile = "/home/oscar/irclogs/freenode/#channel.log"
@@ -18,8 +19,8 @@ def reset():
     curtime = os.stat(logfile).st_mtime
 
 def displaynotification(lastline):
-    execstring = "notify-send '" + lastline + "'"
-    os.system(execstring)
+    execlist = ['notify-send', lastline]
+    subprocess.call(execlist)
 
 def readlastline():
     f = open(logfile, 'rU')
